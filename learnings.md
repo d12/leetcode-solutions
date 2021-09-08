@@ -2,6 +2,9 @@
 
 ### General
 
+### Cycles
+
+Tortise and the hare / fast-slow algorithm can solve lots of cycle problems.
 
 ### Majority
 
