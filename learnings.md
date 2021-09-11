@@ -12,7 +12,8 @@ Boyer-Moore voting algorithm is handy for majority questions https://en.wikipedi
 
 ### O(1) space
 
-An O(1) space requirement means no trees, graphs, linked lists, queues or stacks, unless they're bounded in size by some constant. It also means no recursion that's bounded by the input size or the log of the input size.
+- An O(1) space requirement means no trees, graphs, linked lists, queues or stacks, unless they're bounded in size by some constant. It also means no recursion that's bounded by the input size or the log of the input size.
+- Sometimes you can solve O(1) space questions with a list input by storing some state in the list itself. This is especially doable if constraints state that array alements will be < array.length. Just make sure to fix the input array after. Side effects are bad.
 
 ### Pairs and XOR
 
