@@ -1,5 +1,5 @@
 # O(N) time, O(1) space
-def rob(nums, robbed_last = false)
+def rob(nums)
   return 0 if nums.empty?
 
   runs = [
@@ -32,4 +32,17 @@ def prune_runs(runs)
     category.max {|a, b| a[:sum] <=> b[:sum]}
   end
   maxes.flatten
+end
+
+# Try to clean it up a bit
+# O(N) time, O(1) space
+def rob(nums)
+  not_robbed_last = 0
+  robbed_last = 0
+
+  nums.each do |num|
+    not_robbed_last, robbed_last = [robbed_last, not_robbed_last].max, [robbed_last, not_robbed_last + num].max
+  end
+
+  [not_robbed_last, robbed_last].max
 end
