@@ -77,3 +77,28 @@ class LRUCache
     @list_tail = new_tail
   end
 end
+
+# Same complexity, but way more simple
+# Slightly cheaty, use the ordered property of a Ruby hash
+class LRUCache
+  def initialize(capacity)
+    @capacity = capacity
+    @hash = {}
+  end
+
+  def get(key)
+    return -1 unless @hash[key]
+    val = @hash.delete(key)
+
+    @hash[key] = val
+  end
+
+  def put(key, value)
+    @hash.delete(key)
+    @hash[key] = value
+
+    if @hash.length > @capacity
+      @hash.delete(@hash.keys.first)
+    end
+  end
+end
