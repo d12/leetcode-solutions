@@ -68,3 +68,37 @@ def can_find_end(node, visited, verified_nodes)
   visited.delete(node)
   verified_nodes[node] = true
 end
+
+# Alternative solution using adjacency lists instead of nodes
+def can_finish(num_courses, prerequisites)
+  pre_req_map = {}
+  prerequisites.each do |a, b|
+    pre_req_map[a] ||= []
+    pre_req_map[a] << b
+    pre_req_map[b] ||= []
+  end
+
+  confirmed = {}
+  # Check if we can complete each course
+  pre_req_map.keys.each do |course|
+    return false unless can_finish_course(course, pre_req_map, {}, confirmed)
+  end
+
+  true
+end
+
+def can_finish_course(course, pre_req_map, visited = {}, confirmed = {})
+  return false if visited[course]
+  return true if confirmed[course]
+
+  visited[course] = true
+  pre_req_map[course].each do |pre_req|
+    unless can_finish_course(pre_req, pre_req_map, visited, confirmed)
+      return false
+    end
+  end
+
+  visited.delete(course)
+
+  confirmed[course] = true
+end
